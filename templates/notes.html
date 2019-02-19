@@ -2,25 +2,54 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
 
             // Notes controls
-            $("#hide_button").click(function(){
-                $("#notes").hide();
+            $("#hide_button").click(function() {
+                $("#content").hide();
                 $("#hide_button").hide();
                 $("#show_button").show();
             });
+
             $("#show_button").click(function(){
-                $("#notes").show();
+                $("#content").show();
                 $("#show_button").hide();
                 $("#hide_button").show();
             });
             $("#show_button").hide();
 
-            // Fortune cookie controls
-            $("#show_fortune").click(function(){
-                // $("#fortune_cookie").text("Life is a...");
-                $("#fortune_cookie").load("/static/fortune.txt");
+            // Update notes controls
+            $("#update_button").click(function() {
+                filter = $("#filter").val()
+                $.get("/content/" + filter, function(data) {
+                    data = data["data"]
+                    output = "";
+                    for (i in data) {
+                        output += data[i] + "<hr/>";
+                    }
+                    $("#content").html(output);
+                });
+            });
+
+            $("#filter").keypress(function() {
+                filter = $("#filter").val()
+                $.get("/content/" + filter, function(data) {
+                    data = data["data"]
+                    output = "";
+                    for (i in data) {
+                        output += data[i] + "<hr/>";
+                    }
+                    $("#content").html(output);
+                });
+            });
+
+            $.get("/content/peaches", function(data) {
+                data = data["data"]
+                output = "";
+                for (i in data) {
+                    output += data[i] + "<hr/>";
+                }
+                $("#content").html(output);
             });
         });
     </script>
@@ -37,16 +66,13 @@ Notes
         <input type="submit" value="Submit"/>
     </form>
     <hr>
-    <div id="notes">
-    {% for note in notes %}
-        {{note}}
-        <hr>
-    {% endfor %}
-    </div>
+    <input type="text" id="filter" name="filter" value=""/>
+    <hr>
+    <div id="content"></div>
+    <button id="update_button">Update Notes</button>
+    <hr>
     <button id="hide_button">Hide Notes</button>
     <button id="show_button">Show Notes</button>
     <hr>
-    <div id="fortune_cookie">Life...</div>
-    <button id="show_fortune">Show Fortune</button>
 </body>
 </HTML>
