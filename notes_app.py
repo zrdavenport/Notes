@@ -31,3 +31,10 @@ def get_content(search=None):
     items = notes_api.get_notes(search)
     data = { "data": items }
     return jsonify(data)
+
+@app.route("/remove/<int:id>")
+def get_remove(id):
+    print(id)
+    print(type(id))
+    notes_api.delete_note(id)
+    return redirect("/notes")
