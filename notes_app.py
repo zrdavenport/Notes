@@ -34,7 +34,5 @@ def get_content(search=None):
 
 @app.route("/remove/<int:id>")
 def get_remove(id):
-    print(id)
-    print(type(id))
     notes_api.delete_note(id)
     return redirect("/notes")

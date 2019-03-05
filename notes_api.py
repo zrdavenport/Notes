@@ -32,4 +32,3 @@ def delete_note(id):
         db.remove(doc_ids = [id])
     except KeyError:
         pass
-
