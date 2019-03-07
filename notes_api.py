@@ -24,6 +24,7 @@ def get_notes(search=None):
 def add_note(note):
     global db
     db.insert({"text":note})
+    return id
 
 # delete a note by id
 def delete_note(id):
