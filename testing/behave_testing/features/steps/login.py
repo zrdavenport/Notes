@@ -9,15 +9,19 @@ _browser = None
 def step_impl(context):
     global _browser
     _browser = webdriver.Chrome()
+    assert _browser
 
 @when(u'we navigate to www.amazon.com')
 def step_impl(context):
+    global _browser
     _browser.get("https://www.amazon.com")
 
 @then(u'the browser title will contain Amazon')
 def step_impl(context):
+    global _browser
     assert "Amazon" in _browser.title
 
-@then (u'the page source will contain "Deal"')
+@then(u'the page source will contain "Deal"')
 def step_impl(context):
+    global _browser
     assert "Deal" in _browser.page_source

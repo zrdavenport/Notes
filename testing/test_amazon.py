@@ -4,11 +4,10 @@ import time
 
 browser = webdriver.Chrome()
 try:
-
     browser.get("https://www.amazon.com")
     assert "Amazon" in browser.title
 
-    target = "blender"
+    target = "toaster"
     brand = "hamilton beach"
 
     search_box = browser.find_element_by_id("twotabsearchtextbox")
@@ -16,15 +15,15 @@ try:
     search_box.send_keys(target)
     search_box.send_keys(Keys.RETURN)
 
-    results = browser.find_elements_by_class_name("s-result-item")
-    n = len(results)
+    result_items = browser.find_elements_by_class_name("s-result-item")
+    print(len(result_items))
+    n = len(result_items)
     k = 0
-    for results in results:
-        if brand.lower() in results.text.lower():
+    for result_item in result_items:
+        print(result_item.text)
+        if brand.lower() in result_item.text.lower():
             k += 1
     assert k >= 3
-    if k >= 3:
-        print("Enough " + brand + " items have been found.")
-
+    print("enough " + brand + " items were found.")
 finally:
     browser.close()
