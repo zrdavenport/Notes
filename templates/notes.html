@@ -3,14 +3,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         function format_icon(href, icon){
-            icon = "<img src=\"" + icon + "\" alt=\"ABC\" width=\"42\" height=\"42\" border=\"0\"\">"
-            output = "<a href=\"" + href + "\>" + icon + "</a"
+            output = "<a href=\"" + href + "\">" + text + "</a>"
             return output
         }
 
-        function format_notes(data) {
+        function format_notes(href, icon) {
+            icon = "<img src=\"" + icon + "\" alt=\"ABC\" width=\"42\" height=\"42\" border=\"0\">";
+            output = "<a href=\"" + href + "\">" + icon + "</a>"
+            return output
+        }
 
-            function format_note(n) {
+            function format_note(data) {
                 id_cell = "<td>" + n.id + "</td>"
                 text_cell = "<td" + n.text + "</td>"
                 link_cell = "<td>" + format_icon("/remove/" + n.id, "/static/delete_icon.svg") + "</td>"
