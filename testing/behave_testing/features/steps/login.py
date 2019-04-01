@@ -25,3 +25,4 @@ def step_impl(context):
 def step_impl(context):
     global _browser
     assert "Deal" in _browser.page_source
+``

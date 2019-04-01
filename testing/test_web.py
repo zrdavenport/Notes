@@ -42,3 +42,4 @@ def test_home_page_submits_data_into_list():
 
     time.sleep(10)
     browser.close()
+
