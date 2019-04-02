@@ -8,11 +8,11 @@ from tinydb import TinyDB, Query
 notes_db = TinyDB("notes_tinydb.json")
 profiles_db = TinyDB("notes_tinydb.json")
 
-def profiles(search=None):
+def get_profiles(search=None):
     global profiles_db
     query = Query()
     if search:
-        the_profiles = profiles_db.search(query.user.matches(".*" + search + ".*", flags=re.IGNORECASE))
+        the_profiles = profiles_db.search(query.user.matches(".*"+search+".*", flags=re.IGNORECASE))
     else:
         the_profiles = profiles_db.all()
     print(the_profiles)
@@ -20,7 +20,7 @@ def profiles(search=None):
         n['id'] = n.doc_id
     return the_profiles
 
-def add_profiles(profile):
+def add_profile(profile):
     global profiles_db
     assert type(profile) is dict
     assert 'user' in profile
@@ -31,7 +31,7 @@ def add_profiles(profile):
 def delete_profile(id):
     global profiles_db
     try:
-        profiles_db.remove(doc_ids=[id])
+        profiles_db.remove(doc_ids = [id])
     except KeyError:
         pass
 
@@ -40,7 +40,7 @@ def get_notes(search=None):
     global notes_db
     query = Query()
     if search:
-        the_notes = notes_db.search(query.text.matches(".*" + search + ".*", flags=re.IGNORECASE))
+        the_notes = notes_db.search(query.text.matches(".*"+search+".*", flags=re.IGNORECASE))
     else:
         the_notes = notes_db.all()
     print(the_notes)
@@ -48,7 +48,7 @@ def get_notes(search=None):
         n['id'] = n.doc_id
     return the_notes
 
-#add a note to the list of notes
+# add a note to the list of notes
 def add_note(note):
     global notes_db
     id = notes_db.insert({"text":note})
