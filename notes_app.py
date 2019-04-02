@@ -25,7 +25,7 @@ def get_register():
     _message = None
     return response
 
-@app.route('register', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def post_register():
     global _message
     data_api.add_profile({

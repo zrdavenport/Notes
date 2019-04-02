@@ -8,11 +8,11 @@ from tinydb import TinyDB, Query
 notes_db = TinyDB("notes_tinydb.json")
 profiles_db = TinyDB("notes_tinydb.json")
 
-def get_notes(search=None):
+def profiles(search=None):
     global profiles_db
     query = Query()
     if search:
-        the_notes = profiles_db.search(query.user.matches(".*" + search + ".*", flags=re.IGNORECASE))
+        the_profiles = profiles_db.search(query.user.matches(".*" + search + ".*", flags=re.IGNORECASE))
     else:
         the_profiles = profiles_db.all()
     print(the_profiles)
