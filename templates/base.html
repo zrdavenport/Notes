@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,19 +10,38 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     {% block head %}
     {% endblock %}
+
+    {% block style %}
+    {% endblock %}
+
+    <script>
+        {% block script %}
+        {% endblock %}
+    </script>
+
 </head>
+
 <body>
     <div id="message">
         {% if message != None and message != "" %}
-            {{message}}
-            <hr/>
+        {{message}}
+        <hr />
         {% endif %}
     </div>
     {% if session %}
-        Current user: {{session["user"]}}
     {% endif %}
+    <div class="header">
+        {% block header %} {% endblock %}
+    </div>
+    <div class="navigation">
+        {% block navigation %} {% endblock %}
+    </div>
     <div id="body">
         {% block body %}{% endblock %}
     </div>
+    <div class="footer">
+        {% block footer %} {% endblock %}
+    </div>
 </body>
+
 </html>

@@ -95,7 +95,7 @@ def get_notes():
     if not session:
         response.set_cookie("message","User is not logged in.")
         return response
-    response = make_response(render_template("notes.html", message=message, session=session))
+    response = make_response(render_template("template_notes.html", message=message, session=session))
     storage.update_session(key, {"pages":(session.get("pages",0) + 1)})
     response.set_cookie("session_key", key, max_age=600)
     response.set_cookie("message","",expires=0)
@@ -159,3 +159,8 @@ def get_content(search=None):
 def get_remove(id):
     storage.delete_note(id)
     return redirect("/notes")
+
+@app.route('/template', methods=['GET'])
+def get_template():
+    response =  make_response(render_template("template.html"))
+    return response
