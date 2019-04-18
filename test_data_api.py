@@ -10,7 +10,7 @@ def test_notes():
 
 def test_profiles():
     p = data_api.get_profiles()
-    data_api.add_profile({'user': "roberto"})
+    data_api.add_profile({'user':"roberto"})
     p = data_api.get_profiles("roberto")
     assert len(p) > 0
     assert "roberto" in p[0]['user']
@@ -18,4 +18,4 @@ def test_profiles():
 
 if __name__ == "__main__":
     test_notes()
-    test_get_notes()
+    test_profiles()
